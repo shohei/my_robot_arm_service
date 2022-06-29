@@ -1,0 +1,9 @@
+<launch>
+    <param name="ROS_IP" value="0.0.0.0" />
+    <node name="server_endpoint" pkg="ros_tcp_endpoint" type="default_server_endpoint.py" args="--wait" output="screen" respawn="true" />
+    <node name="mover" pkg="my_robot_arm_service" type="mover.py" args="--wait" output="screen" />
+    <include file="$(find my_robot_arm_config)/launch/demo.launch" />
+    <param name="/move_group/trajectory_execution/execution_duration_monitoring" value="false" />
+    <param name="/move_group/trajectory_execution/allowed_start_tolerance" value="0.0" />
+    <param name="/move_group/planning_pipelines/ompl/start_state_max_bounds_error" value="0.3" />
+</launch>
